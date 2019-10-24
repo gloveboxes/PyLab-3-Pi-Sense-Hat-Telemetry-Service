@@ -7,9 +7,10 @@ RUN apt-get update &&  apt-get install -y --no-install-recommends \
         && apt-get -y autoremove
 
 
-RUN export PIP_DEFAULT_TIMEOUT=100 && \
-        pip3 install --upgrade pip && pip3 install --upgrade setuptools && \
-        pip3 install flask ptvsd 
+RUN export PIP_DEFAULT_TIMEOUT=100
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools
+RUN pip3 install flask ptvsd 
 
 # Add the application
 ADD app /app
