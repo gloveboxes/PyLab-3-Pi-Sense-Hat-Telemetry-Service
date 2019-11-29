@@ -47,9 +47,10 @@ class Telemetry():
 
     def get_telemetry(self):
         try:
-            self.sense.clear(
-                self.colourPalette[self.colourCount % self.colourLength])
-            self.colourCount += 1
+            if self.sense is not None:
+                self.sense.clear(
+                    self.colourPalette[self.colourCount % self.colourLength])
+                self.colourCount += 1
 
             delta = int(time.time()) - self.timestamp
 
@@ -84,7 +85,8 @@ class Telemetry():
             print('EXCEPTION:', str(e))
             return 'Error processing image', 500
         finally:
-            self.sense.clear()
+            if self.sense is not None:
+                self.sense.clear()
 
 
 app = Flask(__name__)
